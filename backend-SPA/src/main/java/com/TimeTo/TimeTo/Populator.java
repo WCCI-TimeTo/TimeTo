@@ -35,13 +35,26 @@ public class Populator implements CommandLineRunner {
         userRepository.save(userAccount1);
         UserAccount userAccount2 = new UserAccount("Gaelan", "Shively", "Praetor");
         userRepository.save(userAccount2);
+        UserAccount userAccount3 = new UserAccount("Anna", "Lizon", "FreeRangeLocust");
+        userRepository.save(userAccount3);
+        UserAccount userAccount4 = new UserAccount("Fatuma", "Pemba", "fpemba");
+        userRepository.save(userAccount4);
+        UserAccount userAccount5 = new UserAccount("Brian", "Waterman", "bwaterman");
+        userRepository.save(userAccount5);
 
 
         for (UserAccount userAccount : userRepository.findAll()) {
             Calendar masterCalendar = new Calendar();
             calendarRepository.save(masterCalendar);
             Account accountCreated = new Account(userAccount, masterCalendar);
+            accountCreated.addFriend(userAccount1);
+            accountCreated.addFriend(userAccount2);
+            accountCreated.addFriend(userAccount3);
+            accountCreated.addFriend(userAccount4);
+            accountCreated.addFriend(userAccount5);
             accountRepository.save(accountCreated);
+
+
 
             String id = accountCreated.getUserName() + "April2020";
             Month april2020 = new Month("April", 4, 4, 2020, masterCalendar, 30, id);
