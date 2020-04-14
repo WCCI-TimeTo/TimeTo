@@ -9,6 +9,4 @@ import java.util.Set;
 
 public interface AccountRepository extends CrudRepository<Account, Long> {
     Optional<Account> findByUsername(String username);
-
-    Set<UserAccount> findFriendsByUserName(String username);
 }

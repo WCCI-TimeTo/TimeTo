@@ -47,11 +47,11 @@ public class Populator implements CommandLineRunner {
             Calendar masterCalendar = new Calendar();
             calendarRepository.save(masterCalendar);
             Account accountCreated = new Account(userAccount, masterCalendar);
-            accountCreated.addFriend(userAccount1);
-            accountCreated.addFriend(userAccount2);
-            accountCreated.addFriend(userAccount3);
-            accountCreated.addFriend(userAccount4);
-            accountCreated.addFriend(userAccount5);
+//            accountCreated.addFriend(userAccount1);
+//            accountCreated.addFriend(userAccount2);
+//            accountCreated.addFriend(userAccount3);
+//            accountCreated.addFriend(userAccount4);
+//            accountCreated.addFriend(userAccount5);
             accountRepository.save(accountCreated);
 
 
@@ -100,6 +100,13 @@ public class Populator implements CommandLineRunner {
             Month december2020 = new Month("December", 12, 3, 2020, masterCalendar, 31, id);
             monthRepository.save(december2020);
             createDecemberDays(december2020, accountCreated);
+        }
+
+        for(Account account : accountRepository.findAll()){
+            for(Account friend : accountRepository.findAll()){
+                account.addFriend(friend);
+                accountRepository.save(account);
+            }
         }
 
     }

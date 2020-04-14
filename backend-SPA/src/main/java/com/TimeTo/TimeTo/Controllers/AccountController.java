@@ -25,7 +25,7 @@ public class AccountController {
     }
 
     @GetMapping("/account/{username}")
-    public Set<UserAccount> getFriendsByUserName(@PathVariable String username){
+    public Set<Account> getFriendsByUserName(@PathVariable String username){
         Account retrievedAccount = accountRepository.findByUsername(username).get();
         return retrievedAccount.getFriends();
     }

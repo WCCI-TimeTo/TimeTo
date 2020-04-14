@@ -20,7 +20,7 @@ public class Account {
     @OneToMany
     private Set<Event> events;
     @ManyToMany
-    private Set<UserAccount> friends;
+    private Set<Account> friends;
 
 //    @OneToMany(mappedBy = "account")
 //    private Set<Month> months;
@@ -53,7 +53,7 @@ public class Account {
         return userAccount;
     }
 
-    public Set<UserAccount> getFriends() {
+    public Set<Account> getFriends() {
         return friends;
     }
 
@@ -61,7 +61,7 @@ public class Account {
         return calendar;
     }
 
-    public void addFriend(UserAccount friend){
+    public void addFriend(Account friend){
         friends.add(friend);
     }
 
